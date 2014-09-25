@@ -1,0 +1,4 @@
+TimSpan
+=======
+
+Deal Span calculate
