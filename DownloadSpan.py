@@ -38,7 +38,7 @@ def datetime_timestamp(dt):
      s = time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S'))
      return int(s)
 
-LOG_FILE = 'preDeal.log'
+LOG_FILE = 'DownloadSpan.log'
 handler = logging.handlers.RotatingFileHandler(os.path.join( os.path.realpath(os.path.curdir),LOG_FILE), maxBytes = 1024*1024, backupCount = 5)
 fmt = '%(asctime)s - %(filename)s:%(lineno)s - %(name)s - %(message)s'  
 formatter = logging.Formatter(fmt)
@@ -79,7 +79,7 @@ settlePriceFiles = {
             }        
     
             
-class DownSpanFiles:     
+class DownloadSpanFiles:     
     def __init__(self, date=None, filter = [], env = []):
         self.toDay =  datetime.date.today().strftime('%Y%m%d') 
         self.spanODir = 'span'
@@ -326,7 +326,7 @@ class DealSpanServer(SimpleXMLRPCServer):
         SimpleXMLRPCServer.__init__(dest)
         self.env = env
         logger.info('Start...')
-        sf = SpanFiles(self.m_settledDate,['Y'])
+        sf = DownloadSpanFiles(self.m_settledDate,['Y'])
         logger.info('...End.')
         
     def _dispatch(self, method, params):
